@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .ul{padding:0;margin: 0}
+        .tab{width: 400px;}
+        .tab-menuWrapper{padding-left: 20px;}
+        .tab-menuWrapper li{float: left;display: inline;padding: 5px;border: 1px solid #333;border-bottom: none;margin-right: 5px;}
+        .tab-contentWrapper{border: 1px solid #333;clear: left;padding: 5px;}
+    </style>
+</head>
+<body>
+  <div class="tab">
+      <ul class="tab-menuWrapper" id="tab-menuWrapper">
+          <li>menu1</li>
+          <li>menu2</li>
+          <li>menu3</li>
+          <li>menu4</li>
+      </ul>
+      <div class="tab-contentWrapper" id="tab-contentWrapper">
+          <div>content1</div>
+          <div style="display: none">content2</div>
+          <div style="display: none">content3</div>
+          <div style="display: none">content4</div>
+      </div>
+  </div>
+</body>
+</html>
+<script>
+    //获得tabMenu和tabContent的节点，并以数组的形式保存在变量中
+    var tabMenus = document.getElementById('tab-menuWrapper').getElementsByTagName('li');
+    tabContents = document.getElementById('tab-contentWrapper').getElementsByTagName('div');
+    //遍历数组,让tabMenu监听click事件
+    //第一种：用闭包方式
+    /* for(var i =0;i<tabMenus.length;i++){
+        (function(_i){
+            tabMenus[_i].onclick = function() {
+                //遍历数组，隐藏所有tabContent
+                for(var j =0;j<tabContents.length;j++){
+                    tabContents[j].style.display = "none";
+                }
+                //显示被点击的tabMenu对应的tabContent
+                tabContents[_i].style.display = "block";
+            }
+        })(i);  
+    } */
+    //第二种：解决循环Bug
+    for(var i =0;i<tabMenus.length;i++){
+        tabMenus[i]._index = i;
+        tabMenus[i].onclick = function() {
+            //遍历数组，隐藏所有tabContent
+            for(var j =0;j<tabContents.length;j++){
+                tabContents[j].style.display = "none";
+            }
+            //显示被点击的tabMenu对应的tabContent
+            tabContents[this._index].style.display = "block";
+        } 
+    }
+</script>

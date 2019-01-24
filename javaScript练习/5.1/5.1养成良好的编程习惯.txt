@@ -1,0 +1,17 @@
+01 团队合作-如何避免js冲突？
+    由于在同一作用域定义了相同的变量，容易产生冲突！
+    解决：a.使用匿名函数控制变量的作用域 (function(){})()  用匿名函数包起来可有效控制全局变量。】
+
+02.解决匿名函数之间的通信问题？
+    解决：a.在window作用域下定义一个全局变量，利用全局作用域的变量在各匿名函数之间搭起桥梁。
+          b.用hash对象作为全局变量 ,使用对象类型的变量作为全局变量，使用命名空间
+          c.使用命名空间，将生成命名空间的功能定义成一个函数，方便调用
+
+03 window.onload：页面元素加载完毕之后出发onload事件
+    DOMReady ：只判断页面所有的DOMRead节点是否已经全部生成,不会因为网络加载问题而影响
+
+04. 引入编译的概念---文件压缩（工具）
+    Packer : http://dean.edwards.name/packer  使用方便
+    YUI Compressor :http://developer.yahoo.com/yui/compressor/ 基于java 的 jar应用，在使用之前先安装JDK，配置java环境，下载jar到本地，然后通过命令进行调用
+                    不仅压缩js代码，还可以压缩css代码
+                    也可以在线压缩 http：//refresh-sf.com/yui/

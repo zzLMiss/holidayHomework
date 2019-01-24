@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//解决方法 使用命名空间,将生成命名空间的功能定义成一个函数，方便调用
+        var GLOBAL = {};
+    </script>
+    <script>
+        (function(){
+            var a =123,b= "hello world";
+            GLOBAL.A = {};
+            GLOBAL.A.str2 = a;
+            GLOBAL.A.str = b;
+        })();
+    </script>
+    <script>
+        (function(){
+            var a,c='abc;'
+            GLOBAL.B = {};
+            GLOBAL.B.str = c;
+        })();
+    </script>
+    <script>
+        (function(){
+            var a = GLOBAL.A.str2,b = GLOBAL.A.str;
+            var d = "aDang is very handsome!";
+            d = b +","+ d + a;
+            console.log(d);//hello world,aDang is very handsome!123
+        })();
+    </script>
+    <script>
+        (function(){
+            var test = GLOBAL.B.str;
+            alert(test);//abc
+        })();
+    </script>
+   
+</body>
+</html>

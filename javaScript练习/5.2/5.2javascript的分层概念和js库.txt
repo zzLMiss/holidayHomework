@@ -1,0 +1,61 @@
+01 javaScript如何分层
+    分为三层：base层：位于三层底端 框架级
+                    a.封装不同浏览器下的差异，完成跨浏览器的兼容工作
+                    b.扩展javascript语言底层提供的接口
+                    （base的功能是给common层和page层提供接口）
+             common层：位于三层中间，依赖于base层提供的接口。 框架级
+                    a.提供可复用的组件，它是典型mvc模式中的m,和页面内的具体功能没有之间关系
+                    common层功能是给page层提供组件
+             page层：位于三层顶端  应用层
+                    a.这一层和页面里的具体功能需求之间相关，是mvc中的c,page依赖于base和common
+                    page层的功能是完成页面内的功能需求
+02 查看IE和firefo下的区别
+    Firefox 会将包括空白、换行等文本信息也当做childNodes中的一员，而IE会忽略它，只将DOM节点当作是childNodes的一员
+    解决：a.将所有的空白和换行去掉，这样ie和firefox的结果会一致。缺点：让程序和html产生了耦合
+          b.通过document.all判断浏览器的种类，document.all是IE支持的属性，Firefox不支持。
+          c.用getNextNode函数封装IE和firefox的差异
+
+03.典型的javaScript兼容问题：
+    a.透明度
+        IE下透明是通过滤镜实现的，而在firefox下透明度是通过css的opacity属性实现的。
+    b.event对象
+        IE下event对象是作为window的属性作用于全局作用域的，而firefox中，event对象是作为事件的参数存在的。
+
+04.on xxx在多人合作时的冲突问题
+    解决：使用addachEvent和addEventListener方法来代替on xxx
+        addachEvent是IE支持的方法，而addEventListener是firefox支持的方法
+05.自定义常用的方法来弥补原生javaScript的缺漏：
+    a.  trim()  :去除字符串首尾的空白字符
+    b.  isNumber,isString,isBoolean,isFunction,isNull,isUndefined,isEmpty,isArray 类型判断的方法
+    c.  get(),$() 参数除了DOM节点id外，还可以之间使用DOM节点本身
+    d.  getElementsByClassName(class名，父容器，DOM节点的标签名) :三个参数，第一个参数必选
+06.extend javaScript是支持面向对象的语言，但它并不提供extend方法用于继承
+
+07.类似选项点击事件（排他思想）
+  解决:
+    方法一：
+    //第一种：用闭包方式
+    for(var i =0;i<tabMenus.length;i++){
+        (function(_i){
+            tabMenus[_i].onclick = function() {
+                //遍历数组，隐藏所有tabContent
+                for(var j =0;j<tabContents.length;j++){
+                    tabContents[j].style.display = "none";
+                }
+                //显示被点击的tabMenu对应的tabContent
+                tabContents[_i].style.display = "block";
+            }
+        })(i);  
+    }
+    //第二种：解决循环Bug
+    for(var i =0;i<tabMenus.length;i++){
+        tabMenus[i]._index = i;
+        tabMenus[i].onclick = function() {
+            //遍历数组，隐藏所有tabContent
+            for(var j =0;j<tabContents.length;j++){
+                tabContents[j].style.display = "none";
+            }
+            //显示被点击的tabMenu对应的tabContent
+            tabContents[this._index].style.display = "block";
+        } 
+    }

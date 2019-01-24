@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <ul><li id="item1"></li><li id="item2"></li><li id="item3"></li></ul>
+    <script>
+        var item1 = document.getElementById('item1');
+        var nextNode = item1.nextSibling;
+        //firefox不支持document.all 这里用以判别浏览器类型
+        if(!document.all){
+            while(true){
+                if(nextNode.nodeType == 1){
+                    break;
+                }else{
+                    if(nextNode.nextSibling){
+                        nextNode=nextNode.nextSibling;
+                    }else{
+                        break;
+                    }
+                }
+            }
+        }
+        alert(nextNode.id); //item2
+       //nodeType 属性返回以数字值返回指定节点的节点类型。
+       
+    </script>
+    <!-- 去掉空白就一样了 -->
+</body>
+</html>

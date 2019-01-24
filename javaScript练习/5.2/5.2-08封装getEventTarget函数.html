@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="button" value="" id="wrapper">
+    <span id="span">hello world</span>
+    <script>
+       function getEventTarget(e){
+           e = window.event || e;
+           return e.srcElement || e.target;
+       }
+       document.getElementById('wrapper').onclick = function(e) {
+           var node = getEventTarget(e);
+           alert(node.tagName);
+       }
+       document.getElementById('span').onclick = function(e) {
+            var node = getEventTarget(e);
+            alert(node.tagName);   
+       }
+    </script>
+</body>
+</html>

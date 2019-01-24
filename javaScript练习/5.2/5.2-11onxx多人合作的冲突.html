@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        #infoBox{padding:5px;border: 2px dashed #ccc;margin-bottom: 10px;width: 136px;height: 20px;line-height: 20px;text-align: center;}
+        #wrapper{padding: 20px 0; background: black;width: 150px;text-align: center;}
+    </style>
+</head>
+<body>
+    <p id="infoBox"></p>
+    <div id="wrapper">
+        <input type="button" value="click me" id="btn">
+    </div>
+    <script>
+       var btn = document.getElementById('btn');
+       /* if(document.all){
+           btn.attachEvent('onclick',function(){
+               alert(1);
+           });
+       }else{
+           btn.addEventListener('click',function(){
+               alert(1);
+           },false);
+       }
+       if(document.all){
+           btn.attachEvent('onclick',function(){
+               alert(2);
+           });
+       }else{
+           btn.addEventListener('click',function(){
+               alert(2);
+           },false);
+       } */
+       /* 封装 */
+       function on(node,eventType,handler){
+           node = typeof node == "string" ? document.getElementById(node) : node;
+           if(document.all){
+               node.attachEvent('on'+eventType,handler);
+           }else{
+               node.addEventListener(eventType,handler,false);
+           }
+       }
+       var btn = document.getElementById('btn');
+       on(btn,'click',function(){
+           alert(1);
+       })
+       on(btn,'click',function(){
+           alert(2);
+       })
+    </script>
+</body>
+</html>

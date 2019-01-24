@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+   <!-- ??cookie -->
+   document.cookie = 'name=aDang; expires =Mon, 30 Nov 2009 05:49:47 GMT path =/';
+   document.cookie = 'sex=male; expires= Mon, 30 Nov 2009 05:49?47 GMT; path =/';
+   document.cookie = 'bolg=http://www.adanghome.com; expires = Mon, 30 Nov 2009 05:49:47 GMT;path = /';
+  <!--  ??cookie
+   ??cookie ????'name = adang;sex=male;blog=http://www.adanghome.come' -->
+   var cookieStr = document.cookie;
+   <!-- ??????????name???? -->
+   var name = cookieStr.split('name')[1].split(';')[0].split('=')[1];
+
+</body>
+</html>

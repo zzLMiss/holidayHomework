@@ -1,0 +1,28 @@
+01.类似选项点击事件（排他思想）
+  解决:
+    方法一：
+    //第一种：用闭包方式
+    for(var i =0;i<tabMenus.length;i++){
+        (function(_i){
+            tabMenus[_i].onclick = function() {
+                //遍历数组，隐藏所有tabContent
+                for(var j =0;j<tabContents.length;j++){
+                    tabContents[j].style.display = "none";
+                }
+                //显示被点击的tabMenu对应的tabContent
+                tabContents[_i].style.display = "block";
+            }
+        })(i);  
+    }
+    //第二种：解决循环Bug
+    for(var i =0;i<tabMenus.length;i++){
+        tabMenus[i]._index = i;
+        tabMenus[i].onclick = function() {
+            //遍历数组，隐藏所有tabContent
+            for(var j =0;j<tabContents.length;j++){
+                tabContents[j].style.display = "none";
+            }
+            //显示被点击的tabMenu对应的tabContent
+            tabContents[this._index].style.display = "block";
+        } 
+    }

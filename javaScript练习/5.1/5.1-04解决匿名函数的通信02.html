@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+//解决方法 用hash对象作为全局变量 ,使用对象类型的变量作为全局变量
+        var GLOBAL = {};
+    </script>
+    <script>
+        (function(){
+            var a =123,b= "hello world";
+            GLOBAL.str2 = a;
+            GLOBAL.str = b;
+        })();
+    </script>
+    <script>
+        (function(){
+            var a,c='abc;'
+        })();
+    </script>
+    <script>
+        (function(){
+            var a = GLOBAL.str2,b = GLOBAL.str;
+            var d = "aDang is very handsome!";
+            d = b +","+ d + a;
+            console.log(d);//hello world,aDang is very handsome!123
+        })();
+    </script>
+   
+</body>
+</html>

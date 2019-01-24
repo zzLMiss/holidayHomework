@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+         //解决方法 使用命名空间,将生成命名空间的功能定义成一个函数，方便调用
+        var GLOBAL = {};
+        GLOBAL.namespace = function (str) {
+            var arr = str.split(','),o = GLOBAL;
+            for(i=(arr[0] ="GLOBAL")?1:0;i<arr.length;i++){
+                o[arr[i]=o[arr[i]]] || {};
+                o=o[arr[i]];
+            }
+        }
+    </script>
+    <script>
+        /* 功能A  */
+        (function(){
+            var a =123,b= "hello world";
+            GLOBAL.namespace("A.CAT");
+            GLOBAL.namespace("A.DOG");
+            GLOBAL.A.CAT.name= "mimi";
+            GLOBAL.A.DOG.name = "wangCai";
+            GLOBAL.A.CAT.move = function() {     
+            }
+            GLOBAL.A.DOG.move = function() {     
+            }
+            GLOBAL.A.str2 = a;
+            GLOBAL.A.str = b;
+        })();
+    </script>
+    <script>
+        /* 功能B */
+        (function(){
+            var a,c = "abc";
+            GLOBAL.namespace("B");
+            GLOBAL.B.str = c;
+        })();
+    </script>
+    <script>
+        /* 功能C */
+        (function(){
+            var a = GLOBAL.A.str2,b = GLOBAL.A.str;
+            var d = "aDang is very handsome!";
+            d = b +","+ d + a;
+            console.log(d);//hello world,aDang is very handsome!123
+        })();
+    </script>
+    <script>
+        /* 功能D */
+        (function(){
+            var test = GLOBAL.B.str;
+            alert(test);//abc
+        })();
+    </script>
+   
+</body>
+</html>
