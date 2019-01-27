@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       function extend(subClass,superClass){
+           var F = function() {}
+           F.prototype = superClass.prototype;
+           subClass.prototype = new F();
+           subClass.prototype.constructor = subClass;
+           subClass.superClass = superClass.prototype;
+           if(superClass.prototype.constructor == Object.prototype.constructor){
+               superClass.prototype.constructor = superClass;
+           }
+       }
+       function Animal(name){
+           this.name = name;
+           this.type = "animal";
+       }
+       Animal.prototype={
+           say:function(){
+               alert("I'm a(an) "+this.type+" ,my name is "+this.name);
+           }
+       }
+       function Bird(name){
+           this.constructor.superClass.constructor.apply(this,arguments);
+           this.type = "bird";
+       }
+       extend(Bird,Animal);
+       Bird.prototype.fly = function() {
+           alert("I'm flying");
+       }
+       var canary = new Bird("xiaocui");
+       canary.say(); //I'm a(an) bird ,my name is xiaocui
+       canary.fly(); //I'm flying
+    </script>
+</body>
+</html>

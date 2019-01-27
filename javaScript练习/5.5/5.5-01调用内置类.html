@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a = new String('hello world'); //通过new String()实例化string类型对象
+        var b = "hello world"; //之间通过“”实例化string类型对象
+        alert(a.length); //11
+        alert(b.length);//11
+        var c = new Array(1,2,3); //通过new Array()实例化array类型对象
+        var d = [1,2,3]; //直接通过[]实例化array类型对象
+        c.push(4);
+        d.pop();
+        alert(c);//1234
+        alert(d);//12
+    </script>
+</body>
+</html>

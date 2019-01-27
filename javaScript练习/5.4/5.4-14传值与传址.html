@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var a =10; //基本数据类型
+        var b = a; //将变量a保存的值复制一份，传给变量b,a和b各保存一份数据
+        var c =[1,2,3];//复杂数据类型
+        var d = c; //将变量c指向的数据的内存地址传给变量d,c和d指向同一份数据
+        b++;
+        d.push(4);
+        alert(a);//10
+        alert(b);//11 变量b保存的数据更改不会影响到变量a
+        alert(c);//1234 变量c和d指向同一份数据，数据更改会互相影响
+        alert(d);//1234
+    </script>
+</body>
+</html>

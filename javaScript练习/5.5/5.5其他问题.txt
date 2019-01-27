@@ -1,0 +1,4 @@
+01.prototype和内置类
+    javaScript提供了一些内置类，包括Array,String,Function等
+        内置类不一定通过new方式进行实例化
+        内置类的方法可以重写，但属性不能重写

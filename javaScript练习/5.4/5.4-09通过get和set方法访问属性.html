@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //定义Animal类
+    function Animal(name){
+       var name;
+       var type = "animal";
+       var _age = 20;
+        this.getName = function() {
+            return name;
+        }
+        this.setName = function(o) {
+            name=o;
+        }
+        this.getType=function(){
+            return type;
+        }
+        this.setType = function(o){
+            type = o;
+        }
+        this._getAge = function() {
+            return _age;
+        }
+        this._setAge = function() {
+            _age = o;
+        }
+        this.setName(name);
+    }
+    Animal.prototype = {
+        _move : function() {
+            alert('I am moving now');
+        },
+        say : function() {
+            alert("I'm a(an) "+this.getType()+",my name is "+this.getName()+",I'm"+this._getAge());
+        },
+        act : function() {
+            this._move();
+        }
+    }
+    var myDog = new Animal('wangcai');
+    myDog.say();
+    myDog.setType('dog');
+    alert(myDog.getType());
+
+</script>

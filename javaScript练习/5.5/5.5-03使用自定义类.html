@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function myArray(o){
+            this.getArray = function() {
+               return o; 
+            }
+        }
+        myArray.prototype={
+            each :function(fun){
+                var o = this.getArray();
+                for(var i=0,n=o.length;i<n;i++){
+                    fun(o[i],i);
+                }
+            }
+        }
+        var a= new myArray([1,2,3]),str="";
+        a.each(function(v,k){
+            str+=k+" : "+v+"\n";
+        });
+        alert(str);
+    </script>
+</body>
+</html>

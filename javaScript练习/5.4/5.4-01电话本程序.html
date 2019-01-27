@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+</html>
+<script>
+    //定义电话本1
+    var phoneBook = [
+        {name:'adang',tel:'111111'},
+        {name: 'zhangxia',tel:'222222'},
+        {name: 'yangfu',tel:'333333'},
+        {name: 'qiaojiwu',tel:'444444'},
+        {name: 'zhouyubo',tel:'555555'}
+    ];
+    //定义电话本2
+    var phoneBook2 = [
+        {name:'niaoren',tel : '111111'},
+        {name:'j2ee',tel : '222222'},
+        {name:'baobao',tel : '333333'}
+    ];
+    //查询电话
+    function getTel(oPhoneBook,oName){
+        var tel ='';
+        for(var i=0;i<oPhoneBook.length;i++){
+            if(oPhoneBook[i].name == oName){
+                tel = oPhoneBook[i].tel;
+                break;
+            }
+        }
+        return tel;
+    }
+    //添加记录
+    function addItem(oPhoneBook,oName,oTel){
+        oPhoneBook.push({name:oName,tel:oTel});
+    }
+    //删除记录
+    function removeItem(oPhoneBook,oName){
+        var n;
+        for(var i =0;i<oPhoneBook.length;i++){
+            if(oPhoneBook[i].name == oName){
+                n = i;
+                break;
+            }
+        }
+        if(n != undefined){
+            oPhoneBook.splice(n,1);
+        }
+    }
+    //从电话本1中查询'niaoren'的电话
+    var str =getTel(phoneBook,'niaoren');
+    alert(str); //''
+    //电话本1添加niaoren的记录
+    addItem(phoneBook,"niaoren",'666666');
+    str = getTel(phoneBook,'niaoren');
+    alert(str);//666666
+    //电话本1删除niaoren的记录
+    removeItem(phoneBook,"niaoren");
+    str = getTel(phoneBook,"niaoren");
+    alert(str); //''
+     //从电话本2中查询'niaoren'的电话
+     var str =getTel(phoneBook2,'niaoren');
+    alert(str); //111111
+</script>

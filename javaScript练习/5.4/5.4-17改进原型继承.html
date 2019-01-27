@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+       function Animal(name){
+           this.name = name;
+           this.type = "animal";
+       }
+       Animal.prototype={
+           say:function(){
+               alert("I'm a(an) "+this.type+" ,my name is "+this.name);
+           }
+       }
+       //定义bird类
+       function Bird(name){
+           Animal.call(this,name);
+       }
+       Bird.prototype = new Animal(); //指向Animal
+       Bird.prototype.constructor = Bird; //用这句重新指回Bird
+       Bird.prototype.fly = function() {
+           alert("I'm flying");
+       }
+       //实例化bird对象
+       var myBird = new Bird("xiaocui");
+       myBird.say();// I'm a(an) animal ,my name is undefined
+       myBird.fly(); //I'm flying
+       var myDog = new Animal("wangcai");
+       myDog.fly(); //报错，myDog.fly is not a function
+    </script>
+</body>
+</html>

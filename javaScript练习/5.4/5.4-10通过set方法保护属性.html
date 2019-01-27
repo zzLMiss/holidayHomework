@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function Animal(name){
+            var name;
+            var type = "animal";
+            var _age =20;
+            this.getName = function() {
+                return name;
+            }
+            this.setName = function(o) {
+                if(o!="wangcai" && o!="xiaoqiang"){
+                    alert('您设置的name值不合要求');
+                    return;
+                }
+                name = o;
+            }
+            this.getType =function(){
+                return type;
+            }
+            this.setType = function(o) {
+                alert('赋值失败，Animal类的type属性是只读的');
+            }
+            this._getAge = function() {
+                return _age;
+            }
+            this._setAge= function() {
+                _age = o;
+            }
+            this.setName(name);
+        }
+        Animal.prototype = {
+            _move : function() {
+                alert("I'm moving now");
+            },
+            say : function() {
+                alert("I'm a(an)" + this.getType()+",my name is" + this.getName()+",I'm "+this._getAge());
+            },
+            act : function(){
+                this._move();
+            }
+        }
+        var myDog = new Animal("wangcai");
+        myDog.say(); //I'm a(an)animal,my name iswangcai,I'm 20
+        myDog.setName('abc');//您设置的name值不合要求
+        alert(myDog.getName());//wangcai
+        myDog.setName('xiaoqiang');
+        alert(myDog.getName());//xiaoqiang
+        myDog.setType('dog');//赋值失败，Animal类的type属性是只读的
+    </script>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        Array.prototype.each = function(fun){
+            for(var i=0,n=this.length;i<n;i++){
+                fun(this[i],i);
+            }
+        }
+        Array.prototype.clone = function(){
+            var o=[];
+            this.each(function(v,k){
+                o[k]=v;
+            });
+            return o;
+        }
+        Array.prototype.map(function(fun){
+            var o=[];
+            this.each(function(v,k){
+                o[k]=fun(v,k);
+            });
+            return o;
+        })
+        //因为在IE中delete是保留字，所以方法名改用Delete
+        Array.prototype.Delete = function(a) {
+            var o = this.clone();
+            for(var i=o.length,n=0;i>n;i--){
+                if(o[i]==a){
+                    o.splice(i,1);
+                }
+            }
+            return o;
+        }
+        var a = [1,2,3,2,4,5];
+        var str = "";
+        a.each(function(v,k){
+            str+=k+" : "+v+"\n";
+        });
+        alert(str); //0:1 1:2 2:3 3:2 4:4 5:5
+        var b=a.map(function(v,k){
+            return v*10;
+        })
+        alert(a);//1,2,3,2,4,5
+        alert(b);//10,20,30,20,40,50
+        var c = b.Delete(20);
+        alert(c); //10,30,40,50
+    </script>
+</body>
+</html>

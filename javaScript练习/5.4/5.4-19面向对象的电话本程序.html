@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //定义电话本管理类
+        function PhonebookManager(o){
+            this._phonebook=o;
+        }
+        PhonebookManager.prototype={
+            //查询电话
+            getTel : function(oName) {
+                var tel = "";
+                for(var i=0;i<this._phonebook.length;i++){
+                    if(this._phonebook[i].name ==oName){
+                        tel = this._phonebook[i].tel;
+                        break;
+                    }
+                }
+                return tel;
+            },
+            //添加记录
+            addItem : function(oName,oTel) {
+                this._phonebook.push({name:oName,tel:oTel});
+            },
+            //删除记录
+            removeItem:function(oName){
+                var n;
+                for(var i=0;i<this._phonebook.length;i++){
+                    if(this._phonebook[i].name == oName){
+                        n = i;
+                        break;
+                    }
+                }
+                if(n!=undefined){
+                    this._phonebook.splice(n,1);
+                }
+            }
+        }
+    </script>
+</body>
+</html>

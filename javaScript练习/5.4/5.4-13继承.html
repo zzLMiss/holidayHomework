@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        //定义Animal类
+        function Animal(name){
+            this.name = name;
+            this.type = "animal";
+        }
+        Animal.prototype= {
+            say : function () {
+                alert("I'm a(an) " +this.type+", my name is"+this.name);
+            }
+        }
+        //定义Bird类
+        function Bird(name){
+            Animal.call(this.name);//call()、apply()、bind() 都是用来重定义 this 这个对象的
+            //call的参数是直接放进去的，第二第三第n个参数全都用逗号分隔，直接放到后面  obj.myFun.call(db,'成都', ... ,'string' )；
+        }
+        Bird.prototype=Animal.prototype;
+        Bird.prototype.fly = function() {
+            alert("I'm flying");
+        }
+        //实例化Bird对象
+        var myBird = new Bird('xiaocui');
+        myBird.say();
+        myBird.fly(); //I'm flying
+        var myDog = new Animal("wangcai");
+        myDog.fly(); //I'm flying
+    </script>
+</body>
+</html>
